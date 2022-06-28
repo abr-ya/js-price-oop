@@ -15,13 +15,19 @@ class Product {
 class Cart {
   items = [];
 
+  addProduct(product) {
+    this.items.push(product);
+    this.totalEl.innerHTML = `<h2>Total: \$${1}</h2>`;
+  }
+
   render() {
     const cartEl = document.createElement('section');
     cartEl.className = 'cart';
     cartEl.innerHTML = `
-      <h2>Total: \$${0}<h2>
+      <h2>Total: \$${0}</h2>
       <button>Order Now!</button>
     `;
+    this.totalEl = cartEl.querySelector('h2');
 
     return cartEl;
   }
@@ -34,7 +40,8 @@ class ProductItem {
 
   addToCart() {
     console.log('Add to Cart');
-    console.log(this.product);
+    // используем static метод App, который завязали на метод корзины
+    App.addProductToCart(this.product);
   }
 
   render () {
@@ -89,16 +96,29 @@ class ProductList {
   }
 }
 
-class App {
+class Shop {
   render() {
     const appDiv = document.getElementById('app');
 
-    const cart = new Cart();
+    this.cart = new Cart();
     const productList = new ProductList();
-    appDiv.append(cart.render());
+    appDiv.append(this.cart.render());
     appDiv.append(productList.render());
   }
 }
 
-const app = new App();
-app.render();
+class App {
+  static cart;
+
+  static init() {
+    const shop = new Shop();
+    shop.render();
+    this.cart = shop.cart; // важно! после рендера
+  }
+
+  static addProductToCart(product) {
+    this.cart.addProduct(product);
+  }
+}
+
+App.init();
