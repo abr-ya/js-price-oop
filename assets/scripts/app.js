@@ -15,9 +15,18 @@ class Product {
 class Cart {
   items = [];
 
+  set cartItems(value) {
+    this.items = value;
+    this.totalEl.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`;
+  }
+
+  get totalAmount() {
+    return this.items.reduce((acc, item) => acc + item.price, 0)
+  }
+
   addProduct(product) {
-    this.items.push(product);
-    this.totalEl.innerHTML = `<h2>Total: \$${1}</h2>`;
+    const updatedItems = [...this.items, product];
+    this.cartItems = updatedItems;
   }
 
   render() {
