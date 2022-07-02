@@ -15,7 +15,7 @@ export class Component {
     if (cssClasses) element.className = cssClasses;
     if (attributes && Array.isArray(attributes)) {
       for (const attr of attributes) {
-        element.setAttrib(attr.name, attr.value)
+        element.setAttribute(attr.name, attr.value)
       }
     }
     document.getElementById(this.hookId).append(element);
