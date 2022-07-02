@@ -6,9 +6,12 @@ export class ElementAttribute {
 }
 
 export class Component {
-  constructor(renderHookId) {
+  constructor(renderHookId, shouldRender = true) {
     this.hookId = renderHookId;
+    if (shouldRender) this.render();
   }
+
+  render() {}
 
   createElement(tag, cssClasses, attributes) {
     const element = document.createElement(tag);

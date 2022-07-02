@@ -2,12 +2,15 @@ import Cart from './components/Cart.js';
 import ProductList from './components/ProductList.js';
 
 class Shop {
+  constructor() {
+    this.render();
+  }
+
   // при создании элемента задаём, куда он будет добавляться при рендере
+  // рендер вызываем в конструкторе Компонента
   render() {
     this.cart = new Cart('app');
-    this.cart.render();
-    const productList = new ProductList('app');
-    productList.render();
+    new ProductList('app');
   }
 }
 
@@ -18,7 +21,6 @@ class App {
 
   static init() {
     const shop = new Shop();
-    shop.render();
     this.cart = shop.cart; // важно! после рендера
   }
 
