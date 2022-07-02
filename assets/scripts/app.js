@@ -1,9 +1,6 @@
-class Product {
-  // title = 'DEFAULT';
-  // imageUrl;
-  // description;
-  // price;
+import { Component } from './Component.js';
 
+class Product {
   constructor(title, image, desc, price) {
     this.title = title;
     this.imageUrl = image;
@@ -12,7 +9,7 @@ class Product {
   }
 }
 
-class Cart {
+class Cart extends Component {
   items = [];
 
   set cartItems(value) {
@@ -30,7 +27,7 @@ class Cart {
   }
 
   render() {
-    const cartEl = document.createElement('section');
+    const cartEl = this.createElement('section', 'cart');
     cartEl.className = 'cart';
     cartEl.innerHTML = `
       <h2>Total: \$${0}</h2>
@@ -109,9 +106,9 @@ class Shop {
   render() {
     const appDiv = document.getElementById('app');
 
-    this.cart = new Cart();
+    this.cart = new Cart('app');
+    this.cart.render();
     const productList = new ProductList();
-    appDiv.append(this.cart.render());
     appDiv.append(productList.render());
   }
 }

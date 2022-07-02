@@ -1,0 +1,23 @@
+{
+  "name": "js-price-oop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assets/scripts/app.js",
+  "scripts": {
+    "start": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abr-ya/js-price-oop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abr-ya/js-price-oop/issues"
+  },
+  "homepage": "https://github.com/abr-ya/js-price-oop#readme",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
+}
